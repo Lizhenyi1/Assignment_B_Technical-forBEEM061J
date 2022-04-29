@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>my beautiful wallet
+  
+    </title>
+
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <script  
+        type="text/javascript"
+        src="https://unpkg.com/bsv@1.5.3/bsv.min.js">
+    </script>
+    
+    <script 
+    type="text/javascript"
+    src="https://cdn.rawgit.com/davidshimjs/qrcodejs/gh-pages/qrcode.min.js">
+
+
+
+  </script>
+    <link href="./mystyle.css" rel="stylesheet" type="text/css"/>
+  </head>
+  <body>
+      
+      <div id="block1">
+           <h1>Private Key is:</h1> 
+           <p id="privKey"> </p>
+      </div>
+       <div id="block2">
+           <h1>Public Key is:</h1> 
+           <p id="pubKey"> </p>
+      </div>
+       <div id="block3" style="">
+           <h1>Address is:</h1> 
+           <p id="address"> </p>
+      </div>
+      <div id="block4">
+        <h1>QR code:</h1> 
+        <p id="qrcode"> </p>
+      </div>
+
+    <script> 
+    var privKey = bsv.PrivateKey.fromRandom();
+    var pubKey = bsv.PublicKey.fromPrivateKey(privKey);
+    var address = bsv.Address.fromPublicKey(pubKey); 
+    
+    
+    
+    var y = document.querySelector("#pubKey");
+    y.innerHTML = pubKey.toString();
+    
+    var z = document.querySelector("#address");
+    z.innerHTML = address.toString();
+
+    var addressCode = 'bitcoinsv:' + address;
+    
+    new QRCode(document.getElementById("qrcode"), addressCode);
+
+     </script>
+  </body>
+</html>
